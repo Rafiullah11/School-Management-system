@@ -1,0 +1,96 @@
+﻿.container {
+    background: #F8F9FA;
+}
+body {
+    /*background-image: url('file:///E:\SMS\SchoolManagementSystem\wwwroot\img\bg3.jpg');*/
+    background-image: url('file:///E:\SMS\SchoolManagementSystem\wwwroot\img\school.jpg');
+}
+/*body {
+    margin: 0;
+    padding: 0;*/
+    /*background-image: url('file:///E:\SMS\SchoolManagementSystem\wwwroot\img\bg3.jpg');*/
+    /*background: url(img/bg3.jpg);*/
+    /*background-size: cover;
+    background-position: center;
+    font-family: sans-serif;
+    background-repeat: no-repeat;
+}
+
+.login-box {
+    width: 320px;
+    height: 420px;
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    box-sizing: border-box;
+    padding: 70px 30px;
+}
+
+.avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    position: absolute;
+    top: -50px;
+    left: calc(50% - 50px);
+}
+
+h1 {
+    margin: 0px;
+    padding: 0 0 20px;
+    text-align: center;
+    font-size: 22px;
+}
+
+.login-box p {
+    margin: 0;
+    padding: 0;
+    font-weight: bold;
+}
+
+.login-box input {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+    .login-box input[type="text"], input[type="password"] {
+        border: none;
+        border-bottom: 1px solid white;
+        background: transparent;
+        outline: none;
+        height: 40px;
+        color: white;
+        font-size: 16px;
+    }
+
+    .login-box input[type="submit"] {
+        border: none;
+        outline: none;
+        height: 40px;
+        background-color: #1c8adb;
+        color: white;
+        font-size: 18px;
+        border-radius: 20px;
+        font-weight: bold;
+    }
+
+        .login-box input[type="submit"]:hover {
+            cursor: pointer;
+            background-color: white;
+            color: darkblue;
+            font-weight: bold;
+        }
+
+.login-box a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 18px;
+    text-align: center;
+}
+
+    .login-box a:hover {
+        color: deepskyblue;
+    }*/

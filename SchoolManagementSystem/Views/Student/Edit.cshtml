@@ -1,0 +1,89 @@
+﻿@model SchoolManagementSystem.Model.StudentModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<div class="container border mt-3">
+    <h2 class="text-center text-primary mt-2">Enter Student Record </h2>
+    <hr />
+    <div class="row ">
+        <div class="col-md-12">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="Id" />
+
+                <div class="row mt-4">
+                    <div class="col-md-6">
+                        <label asp-for="Name" class="control-label"></label>
+                        <input asp-for="Name" class="form-control" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-6 ">
+                        <label asp-for="Email" class="control-label"></label>
+                        <input asp-for="Email" class="form-control" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-md-6 mb-2">
+                        <label asp-for="ClassId" class="control-label" id="ddclass"></label>
+                        <select asp-for="ClassId" class="form-control" asp-items="@(new SelectList(ViewBag.message,"ClassId","Name"))">
+                            <option>Select Class</option>
+
+                        </select>
+                    </div>
+
+                    <div class="col-md-6 mb-2">
+                        <label asp-for="SectionId" class="control-label"></label>
+                        <select asp-for="SectionId" class="form-control" id="ddsection">
+                            <option>Select Section</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row mt-2">
+                    <div class="col-md-12 mb-2">
+                        <label asp-for="Address" class="control-label"></label>
+                        <textarea asp-for="Address" class="form-control" rows="4" style="resize:none"></textarea>
+                        <span asp-validation-for="Address" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2 ">
+                        <div class="form-group">
+                        <input type="submit" value="Update Record" class="btn btn-primary" />
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                        <a asp-action="Index" class="btn btn-primary">Back to List</a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script>
+    $('#ddclass').change(function () {
+        var id = $(this).val();
+
+        $.ajax({
+            type: "GET",
+            url: "../Student/LoadSection?id=" + id,
+            success: function (data) {
+                var len = data.length;
+                $("#ddsection").empty();
+                for (var i = 0; i < len; i++) {
+                    var id = data[i]['id'];
+                    var name = data[i]['name'];
+                    console.log(data);
+                    $("#ddsection").append("<option value='" + id + "'>" + name + "</option>");
+                }
+            }
+        });
+    });
+</script>

@@ -1,0 +1,46 @@
+﻿@model IEnumerable<SchoolManagementSystem.Models.SubjectModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="container border mt-3">
+    <h2 class="text-center text-primary mt-2">Subject Details</h2>
+    <hr />
+    <a asp-action="create" class="btn btn-primary">Add Subject</a>
+    <div class="card mt-3 ">
+        <div class="card-header">
+            <i class="fas fa-table"></i>
+            Subject Table
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover table-striped" id="dataTable" cellspacing="0" width="100%">
+                    <thead class="table-active">
+                        <tr>
+                            <th>Subject Name</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.Name</td>
+                                <td>
+                                    <a asp-route-id="@item.Id" asp-action="Edit" class="btn btn-info">
+                                        <i class="fas fa-user-edit"></i>
+                                    </a>
+                                    <a asp-route-id="@item.Id" asp-action="Delete" class="btn btn-danger">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>

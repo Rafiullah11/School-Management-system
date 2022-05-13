@@ -1,0 +1,108 @@
+﻿@model SchoolManagementSystem.Models.StaffSalaryViewModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+<div class="container border mt-3">
+    <h2 class="text-center text-primary mt-2">Enter Staff Salary Record </h2>
+    <hr />
+    <div class="row">
+        <div class="col-md-6 offset-3">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <div class="form-group">
+                    <label class="control-label">Select Department</label>
+                    <select asp-for="TypeId" id="typeId" class="form-control">
+
+                        <option>Please Select</option>
+                        <option value="1">Employee</option>
+                        <option value="2">Staff</option>
+
+                    </select>
+                    <span asp-validation-for="TypeId" class="text-danger"></span>
+                </div>
+
+                <div class="form-group" id="ddEmployee">
+                    <label class="control-label">Employee</label>
+                    <select asp-for="EmployeeId" class="form-control" asp-items="@(new SelectList(ViewBag.Employee,"EmployeeId","Name"))">
+                        <option>Please Select Employee</option>
+                    </select>
+                    <span asp-validation-for="EmployeeId" class="text-danger"></span>
+                </div>
+
+                <div class="form-group" id="ddTeacher">
+                    <label class="control-label">Teacher</label>
+                    <select asp-for="TeacherId" class="form-control" asp-items="@(new SelectList(ViewBag.Message,"TeacherId","Name"))">
+                        <option>Please Select Staff</option>
+                    </select>
+                    <span asp-validation-for="TeacherId" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Salary" class="control-label"></label>
+                    <input asp-for="Salary" class="form-control" />
+                    <span asp-validation-for="Salary" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Month" class="control-label"></label>
+                    <select asp-for="Month" class="form-control">
+                        <option value="0">Select Month</option>
+                        <option value="1"> Jan</option>
+                        <option value="2"> Feb</option>
+                        <option value="3"> Mar</option>
+                        <option value="4"> Apr</option>
+                        <option value="5"> May</option>
+                        <option value="6"> Jun</option>
+                        <option value="7"> Jul</option>
+                        <option value="8"> Aug</option>
+                        <option value="9"> Sept</option>
+                        <option value="10"> Oct</option>
+                        <option value="11"> Nov</option>
+                        <option value="12"> Dec</option>
+                    </select>
+                    <span asp-validation-for="Month" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Year" class="control-label"></label>
+                    <input asp-for="Year" class="form-control" />
+                    <span asp-validation-for="Year" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Date" class="control-label"></label>
+                    <input asp-for="Date" class="form-control" />
+                    <span asp-validation-for="Date" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" value="Save Record" class="btn btn-primary btn-block" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+ 
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#ddEmployee').hide();
+            $('#ddTeacher').hide();
+        })
+        $('#typeId').change(function () {
+            var id = $(this).val();
+            if (id == 1) {
+                $('#ddEmployee').show();
+                $('#ddTeacher').hide();
+            }
+            if (id == 2) {
+                $('#ddEmployee').hide();
+                $('#ddTeacher').show();
+            }
+        })
+    </script>
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }

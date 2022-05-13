@@ -1,0 +1,54 @@
+﻿@inject SignInManager<IdentityUser> signInManager  
+  <div id="layoutSidenav_nav">
+      <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+          <div class="sb-sidenav-menu">
+              <div class="nav">
+                  <a class="nav-link" asp-controller="Home" asp-action="Index">
+                      <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                      Dashboard
+                  </a>
+                  <a asp-controller="Teacher" asp-action="Index" class="nav-link">
+                      <div class="sb-nav-link-icon"><i class="fas fa-chalkboard-teacher"></i></div>
+                      Teacher
+                  </a>
+                  <a asp-controller="Student" asp-action="Index" class="nav-link">
+                      <div class="sb-nav-link-icon"><i class="fas fa-user-graduate"></i></div>
+                      Student
+                  </a>
+                  <a asp-controller="Classes" asp-action="Index" class="nav-link">
+                      <div class="sb-nav-link-icon"><i class="fas fa-user-graduate"></i></div>
+                      Classes
+                  </a>
+                  <a asp-controller="Section" asp-action="Index" class="nav-link">
+                      <div class="sb-nav-link-icon"><i class="fas fa-user-graduate"></i></div>
+                      Section
+                  </a>
+                  <a class="nav-link" asp-controller="Fee" asp-action="Index">
+                      <div class="sb-nav-link-icon"><i class="fas fa-user-graduate"></i></div>
+                      Student Fees
+                  </a>
+                  <a class="nav-link" asp-controller="Employee" asp-action="Index">
+                      <div class="sb-nav-link-icon"><i class="fas fa-user-graduate"></i></div>
+                      Employee
+                  </a>
+                  <a class="nav-link" asp-controller="StaffSalary" asp-action="Index">
+                      <div class="sb-nav-link-icon"><i class="fas fa-user-graduate"></i></div>
+                      Staff Salary
+                  </a>
+                  <a class=" nav-link" asp-action="Index" asp-controller="Subject">
+                      <div class="sb-nav-link-icon"><i class="fa fa-book"></i></div>
+                      Subject
+                  </a>
+
+              </div>
+          </div>
+          @if (signInManager.IsSignedIn(User))
+          {
+              <div class="sb-sidenav-footer">
+                  <div class="small">Logged in as:</div>
+                  @User.Identity.Name
+              </div>
+          }
+
+      </nav>
+    </div>

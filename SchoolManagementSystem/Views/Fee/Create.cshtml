@@ -1,0 +1,115 @@
+﻿@model SchoolManagementSystem.Models.FeeViewModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="container border mt-3">
+    <h2 class="text-center text-primary mt-2">Enter Fees Record </h2>
+    <hr />
+    <div class="row">
+        <div class="col-md-12">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label asp-for="ClassId" class="control-label"></label>
+                        <select id="ddclass" asp-for="ClassId" class="form-control"
+                                asp-items="@(new SelectList(ViewBag.message,"ClassId","Name"))">
+                            <option>Select Class</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label asp-for="SectionId" class="control-label"></label>
+                        <select asp-for="SectionId" id="ddsection" class="form-control">
+                            <option>Select Section</option>
+
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <label asp-for="StudentId" class="control-label"></label>
+                        <select asp-for="StudentId" id="ddStudent" class="form-control">
+                            <option>Select Student</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label asp-for="MonthId" class="control-label"></label>
+                        <select asp-for="MonthId" class="form-control">
+                            <option value="0">Select Month</option>
+                            <option value="1"> Jan</option>
+                            <option value="2"> Feb</option>
+                            <option value="3"> Mar</option>
+                            <option value="4"> Apr</option>
+                            <option value="5"> May</option>
+                            <option value="6"> Jun</option>
+                            <option value="7"> Jul</option>
+                            <option value="8"> Aug</option>
+                            <option value="9"> Sept</option>
+                            <option value="10"> Oct</option>
+                            <option value="11"> Nov</option>
+                            <option value="12"> Dec</option>
+
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Fees" class="control-label"></label>
+                    <input asp-for="Fees" class="form-control" />
+                    <span asp-validation-for="Fees" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Save Record" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script>
+       $('#ddclass').change(function () {
+            var id = $(this).val();
+
+            $.ajax({
+                type: "GET",
+                url: "../Student/LoadSection?id=" + id,
+                success: function (data) {
+                    console.log(data);
+                    var len = data.length;
+                    $("#ddsection").empty();
+                    for (var i = 0; i < len; i++) {
+                        var id = data[i]['id'];
+                        var name = data[i]['name'];
+                        //console.log(data);
+                        $("#ddsection").append("<option value='" + id + "'>" + name + "</option>");
+                    }
+                }
+            });
+       });
+
+    $('#ddsection').change(function () {
+        var sectionId = $(this).val();
+        var classId = $("#ddclass").val();
+        $.ajax({
+            type: "GET",
+            url: "../Fee/LoadStudents?classId=" + classId + "&sectionId=" + sectionId,
+            success: function (data) {
+                console.log(data);
+
+                var len = data.length;
+                $("#ddStudent").empty();
+                for (var i = 0; i < len; i++) {
+                    var id = data[i]['id'];
+                    var name = data[i]['name'];
+                    $("#ddStudent").append("<option value='" + id + "'>" + name + "</option>");
+                }
+            }
+        });
+    });
+ </script>
+
+
