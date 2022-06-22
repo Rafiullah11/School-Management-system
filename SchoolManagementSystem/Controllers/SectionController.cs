@@ -10,7 +10,6 @@ using System.Threading.Tasks;
 
 namespace SchoolManagementSystem.Controllers
 {
-    [Authorize]
     public class SectionController : Controller
     {
         private readonly ISectionComponent _sectionComponent;
@@ -21,6 +20,7 @@ namespace SchoolManagementSystem.Controllers
             _classesComponent = classesComponent;
         }
         // GET: SectionController
+        [AllowAnonymous]
         public ActionResult Index()
         {
             

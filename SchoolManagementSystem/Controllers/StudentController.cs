@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SchoolManagementSystem.IComponent;
 using SchoolManagementSystem.Model;
@@ -22,6 +23,7 @@ namespace SchoolManagementSystem.Controllers
             _sectionComponent = sectionComponent;
         }
         // GET: StudentController
+        [AllowAnonymous]
         public ActionResult Index()
         {
             List<StudentModel> list = _studentComponent.Students();

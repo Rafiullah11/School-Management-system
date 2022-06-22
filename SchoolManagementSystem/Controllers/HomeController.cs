@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using SchoolManagementSystem.Data;
 using SchoolManagementSystem.Models;
@@ -20,7 +21,7 @@ namespace SchoolManagementSystem.Controllers
             _logger = logger;
             this.context = context;
         }
-
+        [AllowAnonymous]
         public ViewResult Index()
         {
             DashBoardViewModel dashboard = new DashBoardViewModel();

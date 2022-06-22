@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace SchoolManagementSystem.Data
 {
-    public class SchoolContext : IdentityDbContext
+    public class SchoolContext : IdentityDbContext<ApplicationUser>
     {
         public SchoolContext(DbContextOptions options)
            : base(options)
@@ -24,7 +24,16 @@ namespace SchoolManagementSystem.Data
         public DbSet<Employee> Employees { get; set; }
         public DbSet<StaffSalary> StaffSalaries { get; set; }
         public DbSet<Subject> Subjects { get; set; }
-     
-       
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+
+            foreach(var foreignkey in builder.Model.GetEntityTypes().SelectMany(e=>e.GetForeignKeys()))
+            {
+                foreignkey.DeleteBehavior=DeleteBehavior.Restrict;
+            }
+        }
+
     }
 }

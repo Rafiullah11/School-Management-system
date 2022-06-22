@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SchoolManagementSystem.IComponent;
 using SchoolManagementSystem.Models;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace SchoolManagementSystem.Controllers
 {
-
+    [Authorize]
     public class ClassesController : Controller
     {
         private IClassesComponent _classesComponent;
@@ -18,6 +19,7 @@ namespace SchoolManagementSystem.Controllers
             _classesComponent = classesComponent;
         }
         // GET: ClassesController
+        [AllowAnonymous]
         public ActionResult Index()
         {
             List<ClassesModel> list = _classesComponent.Classes();

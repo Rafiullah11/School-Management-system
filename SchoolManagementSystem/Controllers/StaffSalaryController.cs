@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SchoolManagementSystem.IComponent;
 using SchoolManagementSystem.Models;
@@ -22,6 +23,7 @@ namespace SchoolManagementSystem.Controllers
             _employeeComponent = employeeComponent;
         }
         // GET: StaffSalaryController
+        [AllowAnonymous]
         public ActionResult Index()
         {
             List<StaffSalaryViewModel> list = _staffSalaryComponent.StaffSalary();

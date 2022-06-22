@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SchoolManagementSystem.IComponent;
 using SchoolManagementSystem.Models;
@@ -20,6 +21,7 @@ namespace SchoolManagementSystem.Controllers
             _subjectComponent = subjectComponent;
         }
         // GET: TeacherController
+        [AllowAnonymous]
         public ActionResult Index()
         {
             List<TeacherViewModel> list = _teacherComponent.Teacher();
